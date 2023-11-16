@@ -16,14 +16,14 @@ const loginMiddleware = async (request, response, next) => {
 
   const userForToken = {
     email: user.email,
-    id: user._id,
+    id: user.id,
+    role: user.role,
+    fullName: user.fullName,
   };
 
   const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: 60 * 60 });
 
   response.locals.token = token;
-  response.locals.email = user.email;
-  response.locals.name = user.name;
 
   next();
 };

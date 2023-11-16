@@ -25,6 +25,21 @@ mongoose
     logger.error("error connecting to MongoDB:", error.message);
   });
 
+const allowedOrigins = ["http://localhost:5173"]; // Add your frontend origin
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
+
+// app.use(cors());
 app.use(express.json());
 app.use(middleware.requestLogger);
 
