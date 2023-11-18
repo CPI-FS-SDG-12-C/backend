@@ -42,4 +42,15 @@ usersRouter.get("/", async (req, res) => {
   res.json(users);
 });
 
+usersRouter.delete("/delete-all-users", async (req, res) => {
+  try {
+    // Use caution: This will delete all users in the database
+    await User.deleteMany({});
+    res.status(200).send("All users deleted successfully!");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 module.exports = usersRouter;

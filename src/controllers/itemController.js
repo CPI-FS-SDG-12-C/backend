@@ -13,7 +13,7 @@ const getItems = async (request, response) => {
 const createItem = async (request, response) => {
   try {
     const newItem = await itemService.createItem(request.body, request.user.id);
-    response.status(201).json(newItem);
+    response.status(200).json(newItem);
   } catch (error) {
     console.error(error);
     response.status(500).json({ error: "Internal Server Error" });
