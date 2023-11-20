@@ -6,10 +6,24 @@ const getItems = async (userId) => {
   // return await Item.find().populate("user", { email: 1, fullName: 1 });
 };
 
+// get All Items
+const getAllItems = async (userId) => {
+  try {
+    // Ambil semua item yang tidak dimiliki oleh pengguna dengan ID tertentu
+    const items = await Item.find({ user: { $ne: userId }, statusTrade: "open" }).populate("user", { email: 1, fullName: 1 });
+    console.log(items);
+    return items;
+  } catch (error) {
+    console.error("Error fetching items:", error);
+    throw error;
+  }
+};
+
 const createItem = async (itemData, userId) => {
   const user = await User.findById(userId);
   const item = new Item({
     ...itemData,
+    timestamp: new Date(),
     user: user.id,
   });
 
@@ -25,7 +39,7 @@ const getItemById = async (itemId) => {
 };
 
 const deleteItem = async (itemId) => {
-  await Item.findOneAndDelete(itemId);
+  await Item.findByIdAndDelete(itemId);
 };
 
 const updateItem = async (itemId, newData) => {
@@ -34,6 +48,7 @@ const updateItem = async (itemId, newData) => {
 
 module.exports = {
   getItems,
+  getAllItems,
   createItem,
   getItemById,
   deleteItem,

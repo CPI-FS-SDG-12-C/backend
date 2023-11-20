@@ -9,6 +9,8 @@ const itemSchema = new mongoose.Schema({
   describtion: {
     type: String,
   },
+  statusTrade: { type: String, enum: ["open", "keep"] },
+  timestamp: { type: Date },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

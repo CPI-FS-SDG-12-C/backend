@@ -1,9 +1,20 @@
+const { response } = require("express");
 const itemService = require("../services/itemService");
 
 const getItems = async (request, response) => {
   try {
     const items = await itemService.getItems(request.user.id);
     response.json(items);
+  } catch (error) {
+    console.error(error);
+    response.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const getAllItems = async (request, response) => {
+  try {
+    const allItems = await itemService.getAllItems(request.user.id);
+    response.json(allItems);
   } catch (error) {
     console.error(error);
     response.status(500).json({ error: "Internal Server Error" });
@@ -36,6 +47,7 @@ const getItemById = async (request, response) => {
 
 const deleteItem = async (request, response) => {
   try {
+    console.log("Deleting item with ID:", request.params.id);
     await itemService.deleteItem(request.params.id);
     response.status(204).end();
   } catch (error) {
@@ -60,4 +72,5 @@ module.exports = {
   getItemById,
   deleteItem,
   updateItem,
+  getAllItems,
 };

@@ -5,6 +5,7 @@ const verifyToken = require("../middlewares/verifyToken");
 const itemRouter = express.Router();
 
 itemRouter.get("/", verifyToken, itemController.getItems);
+itemRouter.get("/trade", verifyToken, itemController.getAllItems);
 itemRouter.post("/", verifyToken, itemController.createItem);
 itemRouter.get("/:id", verifyToken, itemController.getItemById);
 itemRouter.delete("/:id", verifyToken, itemController.deleteItem);
