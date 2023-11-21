@@ -38,8 +38,25 @@ usersRouter.post("/complete-profile", async (req, res) => {
 });
 
 usersRouter.get("/", async (req, res) => {
-  const users = await User.find({}).populate("items");
-  res.json(users);
+  // const users = await User.find({}).populate("items");
+  // res.json(users);
+  try {
+    const users = await User.find({}).populate({
+      path: "items",
+      populate: {
+        path: "barter",
+        model: "Barter",
+        populate: [
+          { path: "requesterItem", model: "Item" },
+          { path: "desiredItem", model: "Item" },
+        ],
+      },
+    });
+    res.json(users);
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    res.status(500).json({ error: "Error fetching users." });
+  }
 });
 
 usersRouter.delete("/delete-all-users", async (req, res) => {

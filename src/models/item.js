@@ -9,11 +9,25 @@ const itemSchema = new mongoose.Schema({
   describtion: {
     type: String,
   },
-  statusTrade: { type: String, enum: ["open", "keep"] },
-  timestamp: { type: Date },
+  statusTrade: {
+    type: String,
+    enum: ["open", "keep"],
+  },
+  trade: {
+    type: Boolean,
+    default: false,
+  },
+  timestamp: {
+    type: Date,
+    default: Date.now,
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+  },
+  barter: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Barter",
   },
 });
 
@@ -25,4 +39,6 @@ itemSchema.set("toJSON", {
   },
 });
 
-module.exports = mongoose.model("Item", itemSchema);
+const Item = mongoose.model("Item", itemSchema);
+
+module.exports = Item;

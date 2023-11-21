@@ -4,6 +4,14 @@ const User = require("../models/user");
 const getItems = async (userId) => {
   return await Item.find({ user: userId }).populate("user", { email: 1, fullName: 1 });
   // return await Item.find().populate("user", { email: 1, fullName: 1 });
+  const populatedItems = await Promise.all(
+    items.map(async (item) => {
+      await item.populate("barter").execPopulate();
+      return item;
+    })
+  );
+
+  return populatedItems;
 };
 
 // get All Items

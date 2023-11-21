@@ -9,6 +9,7 @@ const middleware = require("./middlewares/middleware");
 const userRouter = require("./controllers/users");
 const loginRouter = require("./controllers/login");
 const itemRouter = require("./routes/itemRoutes");
+const barterRouter = require("./routes/barter");
 
 mongoose.set("strictQuery", false);
 
@@ -46,5 +47,6 @@ app.use(middleware.requestLogger);
 app.use("/api/login", loginRouter);
 app.use("/api/users", userRouter);
 app.use("/api/items", itemRouter);
+app.use("/api/trade", barterRouter);
 
 module.exports = app;

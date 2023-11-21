@@ -1,3 +1,4 @@
+// models/user.js
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
@@ -11,6 +12,12 @@ const userSchema = new mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Item",
+    },
+  ],
+  barterRequests: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Barter",
     },
   ],
 });
