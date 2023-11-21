@@ -5,7 +5,7 @@ const Item = require("../models/item");
 const History = require("../models/history");
 
 // Endpoint untuk memulai barter
-router.post("/start", async (req, res) => {
+router.post("/requests", async (req, res) => {
   try {
     const { requesterItemId, desiredItemId } = req.body;
 
