@@ -21,7 +21,7 @@ const itemSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  user: {
+  userID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },

@@ -23,7 +23,7 @@ const loginMiddleware = async (request, response, next) => {
 
   const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: 60 * 60 });
 
-  response.locals.token = to  ken;
+  response.locals.token = token;
 
   next();
 };
