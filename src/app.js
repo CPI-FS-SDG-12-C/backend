@@ -26,21 +26,22 @@ mongoose
     logger.error("error connecting to MongoDB:", error.message);
   });
 
-const allowedOrigins = ["https://t-brown.vercel.app/"]; // Add your frontend origin
+// const allowedOrigins = ["https://t-brown.vercel.app/"]; // Add your frontend origin
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
-// app.use(cors());
+app.use(cors());
+
 app.use(express.json());
 app.use(middleware.requestLogger);
 
