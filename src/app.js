@@ -26,37 +26,7 @@ mongoose
     logger.error("error connecting to MongoDB:", error.message);
   });
 
-// const allowedOrigins = ["https://t-brown.vercel.app/"]; // Add your frontend origin
-
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-// };
-
-// app.use(cors(corsOptions));
-
-//app.use(cors());
-
-// const corsOptions = {
-//   origin: 'https://t-wofy67dv8-arfandwisukmajaya.vercel.app',
-//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//   credentials: true,
-//   optionsSuccessStatus: 204,
-// };
-
-// app.use(cors(corsOptions));
-const corsOptions = {
-  origin: "*",
-  methods: ["GET", "POST", "DELETE", "HEAD", "PUT", "PATCH"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(express.json());
 app.use(middleware.requestLogger);
