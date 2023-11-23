@@ -26,7 +26,7 @@ mongoose
     logger.error("error connecting to MongoDB:", error.message);
   });
 
-const allowedOrigins = ["https://t-brown.vercel.app"]; // Add your frontend origin
+const allowedOrigins = ["https://t-brown.vercel.app/"]; // Add your frontend origin
 
 const corsOptions = {
   origin: function (origin, callback) {
