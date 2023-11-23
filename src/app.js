@@ -50,16 +50,16 @@ mongoose
 // };
 
 // app.use(cors(corsOptions));
-// app.use(cors({
-//      origin: "https://t-brown.vercel.app/",
-//      methods: ["GET", "POST", "DELETE", "HEAD", "PUT", "PATCH"],
-//      allowedHeaders: ["Content-Type", "Authorization"]
-//    }));
+const corsOptions = {
+  origin: "*",
+  methods: ["GET", "POST", "DELETE", "HEAD", "PUT", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(middleware.requestLogger);
-
-app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Hey this is my API running 🥳");
