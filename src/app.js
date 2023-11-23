@@ -44,6 +44,9 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(middleware.requestLogger);
 
+app.get("/", (req, res) => {
+  res.send("Hey this is my API running 🥳");
+});
 app.use("/api/login", loginRouter);
 app.use("/api/users", userRouter);
 app.use("/api/items", itemRouter);
