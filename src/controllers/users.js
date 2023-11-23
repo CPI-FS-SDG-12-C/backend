@@ -44,7 +44,7 @@ usersRouter.get("/", async (req, res) => {
     const users = await User.find({}).populate({
       path: "items",
       populate: {
-        path: "barterID",
+        path: "barter",
         model: "Barter",
         populate: [
           { path: "requesterItem", model: "Item" },
