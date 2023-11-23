@@ -42,14 +42,19 @@ mongoose
 
 //app.use(cors());
 
-const corsOptions = {
-  origin: 'https://t-wofy67dv8-arfandwisukmajaya.vercel.app',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  optionsSuccessStatus: 204,
-};
+// const corsOptions = {
+//   origin: 'https://t-wofy67dv8-arfandwisukmajaya.vercel.app',
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true,
+//   optionsSuccessStatus: 204,
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors({
+     origin: "https://t-brown.vercel.app/",
+     methods: ["GET", "POST", "DELETE", "HEAD", "PUT", "PATCH"],
+     allowedHeaders: ["Content-Type", "Authorization"]
+   }));
 
 app.use(express.json());
 app.use(middleware.requestLogger);
